@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My List</title>
+  <link rel="stylesheet" href="/src/css/style.css">
+  <script type="module" src="/src/main.ts" defer></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // Retrieve the form and button elements
+      const itemEntryForm = document.getElementById("itemEntryForm");
+      const addToFavoritesButton = document.querySelector(".favorite.styled");
+      const listItems = document.getElementById("listItems");
+
+      // Function to handle the button click event
+      const handleAddToFavorites = function(event) {
+        event.preventDefault(); // Prevent form submission
+        const newItemInput = document.getElementById("newItem");
+        const newItemValue = newItemInput.value.trim();
+
+        if (newItemValue) {
+          const favoritesList = document.getElementById("favoritesList");
+          const newItemElement = document.createElement("li");
+          newItemElement.textContent = newItemValue;
+          favoritesList.appendChild(newItemElement);
+          newItemInput.value = "";
+        }
+      };
+
+      // Function to handle the remove button click event
+      const handleRemoveItem = function(event) {
+        const listItem = event.target.parentNode;
+        listItems.removeChild(listItem);
+      };
+
+      // Add event listener to the "Add to favorites" button
+      addToFavoritesButton.addEventListener("click", handleAddToFavorites);
+
+      // Add event listener to the list items for removal
+      listItems.addEventListener("click", function(event) {
+        if (event.target.tagName === "BUTTON") {
+          handleRemoveItem(event);
+        }
+      });
+    });
+  </script>
+</head>
+
+<body>
+  <main>
+    <h1 class="offscreen">My List</h1>
+    <section class="newItemEntry">
+      <h2 class="offscreen">New Item Entry</h2>
+      <form class="newItemEntry__form" id="itemEntryForm">
+        <label for="newItem" class="offscreen">Enter a new to-do item</label>
+        <input class="newItemEntry__input" id="newItem" type="text" maxlength="40" autocomplete="off"
+          placeholder="Add item" />
+        <button class="favorite styled" type="button">Add to favorites</button>
+      </form>
+    </section>
+
+    <img id="cornerImage" src="https://img.freepik.com/free-vector/hand-drawn-kawaii-coloring-book-illustration_52683-96634.jpg?size=626&ext=jpg&ga=GA1.1.2078332705.1689404027" alt="Image">
+
+    <section class="listContainer">
+      <header class="listTitle">
+        <h2 id="listName">List</h2>
+        <button id="clearItemsButton" class="button listTitle__button" title="Clear the list"
+          aria-label="Remove all items from the list">
+          Well done!
+        </button>
+      </header>
+      <hr />
+      <ul id="listItems">
+        <li class="item">
+          <input type="checkbox" id="1">
+          <label for="1">eat</label>
+          <button class="button">X</button>
+        </li>
+        <li class="item">
+          <input type="checkbox" id="2">
+          <label for="2">sleep</label>
+          <button class="button">X</button>
+        </li>
+        <li class="item">
+          <input type="checkbox" id="3">
+          <label for="3">code</label>
+          <button class="button">X</button>
+        </li>
+      </ul>
+
+</form>
+
+    </section>
+
+    <section class="listContainer">
+      <header class="listTitle">
+        <h2>Favorites</h2>
+      </header>
+      <hr />
+      <ul id="favoritesList"></ul>
+    </section>
+  </main>
+</body>
+<form>
+  <form id="loginForm">
+  <input type="text" name="username" placeholder="Username or Email" required>
+  <input type="password" name="password" placeholder="Password" required>
+  <input type="number" name="age" placeholder="Age" required>
+  <button type="submit">Log In</button>
+</form>
+
+<div id="loggedInMessage">
+  You are logged in. Congrats!
+</div>
+
+<script>
+  document.getElementById("loginForm").addEventListener("submit", function(event) {
+    event.preventDefault(); // Prevent form submission
+
+    // Perform login validation here
+    // Assuming the login is successful, display the "You are logged in" message
+    document.getElementById("loggedInMessage").style.display = "block";
+  });
+</script>
+
+</footer>
+
+</html>
